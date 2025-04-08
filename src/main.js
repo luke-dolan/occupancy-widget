@@ -1,4 +1,4 @@
-// import Raphael from 'raphael';
+import Raphael from 'raphael';
 import JustGage from 'justgage';
 import { styles } from "./assets.js";
 
