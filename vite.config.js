@@ -7,7 +7,7 @@ export default defineConfig({
       entry: resolve(__dirname, 'src/main.js'),
       name: 'OccupancyWidget',
       formats: ['iife'],
-      fileName: (format) => `occupancy-widget.${format}.js`
+      fileName: (format) => `occupancy-widget.js`
     },
     rollupOptions: {
       external: [],
