@@ -7,8 +7,8 @@ export const styles = `
         padding: 0;
     }
     .widget__container {
-        box-shadow: 0 0 18px 8px rgba(0, 0, 0, 0.1), 0 0 32px 32px rgba(0, 0, 0, 0.08);
-        width: 400px;
+        // box-shadow: 0 0 18px 8px rgba(0, 0, 0, 0.1), 0 0 32px 32px rgba(0, 0, 0, 0.08);
+        width: 100%;
         overflow: auto;
         position: absolute;
         transition: max-height .2s ease;
