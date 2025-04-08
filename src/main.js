@@ -3,34 +3,32 @@ import JustGage from 'justgage';
 import { styles } from "./assets.js";
 
 class OccupancyWidget {
-  constructor() {
+  constructor(targetElement) {
+    this.targetElement = targetElement;
     this.initialize();
   }
 
   widgetContainer = null;
 
   async initialize() {
-    // Create the main container div
-    const container = document.createElement("div");
-    container.classList.add("widget__container");
-    
-    document.body.appendChild(container);
+    if (!this.targetElement) {
+      console.error("Target element with class 'widget__container' not found.");
+      return;
+    }
 
-    // Create widget container
-    this.widgetContainer = document.createElement("div");
-    this.widgetContainer.classList.add("widget__occupancy");
+    this.widgetContainer = this.targetElement; // Use the existing element
 
     // Create widget content and inject styles
     this.createWidgetContent();
-    this.injectStyles(container); // Pass container to injectStyles
-
-    // Append widget to container
-    container.appendChild(this.widgetContainer);
+    this.injectStyles(this.widgetContainer); // Inject styles into the target container
 
     // Initialize JustGage after the widget content is in the DOM
     requestAnimationFrame(() => {
       this.initializeJustGage();
     });
+
+    // You likely don't need to append the widgetContainer again,
+    // as it's already in the DOM.
   }
 
   createWidgetContent() {
@@ -81,8 +79,12 @@ class OccupancyWidget {
   }
 }
 
-function initializeWidget() {
-  return new OccupancyWidget();
-}
-
-initializeWidget();
+// Modify the initialization to find the existing widget__container
+document.addEventListener('DOMContentLoaded', () => {
+  const targetElement = document.querySelector('.widget__container');
+  if (targetElement) {
+    new OccupancyWidget(targetElement);
+  } else {
+    console.error("No element with class 'widget__container' found in the DOM.");
+  }
+});
